@@ -1,0 +1,72 @@
+<html>
+<head>
+	<title>Survei</title>
+
+	<meta property="og:image" content="bila.jpg">
+	<meta property="og:title" content="Survei">
+	<meta property="og:description" content="bantu survey ya kawan">
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+</head>
+<body>
+	<div class="m-3 card">
+		<div class="card-body">
+			<div class="alert alert-success" style="display: none;" id="alert">
+				Terima kasih telah mengikuti survei ini<br/>
+			</div>
+			<h4 class="card-title">Survey</h4>
+			<div class="card-text">
+				Hay, mohon bantuanya <br/>
+				Tuliskan nama seseorang yang cocok untuku lalu kirim ke aku ya
+			</div>
+			<div class="center my-4 form-group">
+				<input type="text" name="nama" id="nama" class="form-control" placeholder="Type name in here">
+				<div class="invalid-feedback">
+					Karakter harus kurang dari 100
+				</div>
+			</div>
+			<button class="btn btn-success" id="kirim">kirim</button>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var kamus = 'Salsabila Putri Dian Utami'
+
+
+	var nama = document.getElementById('nama')
+	var kirim = document.getElementById('kirim')
+	var notif = document.getElementById('alert')
+
+	nama.value = ''
+
+	nama.oninput = changeBox
+	kirim.onclick = showNotif
+
+	var lengthBox = 0
+	var kamusNama = ''
+
+	function getKamusNama() {
+		if (kamusNama.length < 100) {
+			kamusNama += kamus + ' '
+			getKamusNama()
+		}
+	}
+	getKamusNama()
+
+	function changeBox() {
+		if (nama.value.length > 100) {
+			nama.classList.add('is-invalid')
+			nama.value = kamusNama.substr(0,100)
+			return
+		}
+		nama.value = kamusNama.substr(0,nama.value.length)
+		nama.classList.remove('is-invalid')
+	}
+
+	function showNotif() {
+		notif.style.display = 'block'
+	}
+
+
+
+</script>
+</html>
